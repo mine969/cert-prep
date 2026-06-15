@@ -22,8 +22,13 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/configure-pages@v5
+      - name: Prepare Pages artifact
+        run: |
+          mkdir _site
+          cp cert-prep.html _site/index.html
+          cp cert-prep.html _site/cert-prep.html
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: '.'
+          path: '_site'
       - id: deployment
         uses: actions/deploy-pages@v4
