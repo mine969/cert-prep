@@ -2200,11 +2200,7 @@ input#accentColorPicker { width: 22px; height: 22px; padding: 0; border: none; b
   h1,h2,h3 { page-break-after: avoid; }
   a { color: #000 !important; text-decoration: none; }
 }
-
-
-
-  .reader-content p { max-width: 72ch; }
-}
+.reader-content p { max-width: 72ch; }
 
 /* ══════════════════════════════════════════════════════════
    DESKTOP TYPOGRAPHY — unambiguously readable on PC screens
@@ -2848,6 +2844,7 @@ input#accentColorPicker { width: 22px; height: 22px; padding: 0; border: none; b
   }
   window.CP_NORMALIZE_PATH = normalizePath;
 
+  const embedded = window.CP_EMBEDDED_MARKDOWN || {};
   const nativeFetch = window.fetch ? window.fetch.bind(window) : null;
   window.fetch = function(resource, init) {
     const raw = typeof resource === 'string' ? resource : (resource && resource.url) || '';
@@ -7117,9 +7114,14 @@ CP_RCtrl.adjFont = function(delta) {
 var _origRRestore = CP_RCtrl.restore.bind(CP_RCtrl);
 CP_RCtrl.restore = function() {
   _origRRestore();
-  var fs = parseInt(localStorage.getItem('cp-fontsize')) || 16;
+  var sizes = [12,13,14,15,16,17,18,20,22];
+  var idx = parseInt(localStorage.getItem('cp-fontsize') || '7', 10);
+  idx = Math.min(sizes.length - 1, Math.max(0, isNaN(idx) ? 7 : idx));
+  var fs = sizes[idx];
   var rc = document.getElementById('readerContent');
   if (rc) rc.style.fontSize = fs + 'px';
+  var fv = document.getElementById('fontVal');
+  if (fv) fv.textContent = fs;
   var v = document.getElementById('rcFontVal');
   if (v) v.textContent = fs;
 };

@@ -2,7 +2,7 @@ name: Deploy cert-prep.html to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [main, claude/admiring-pascal-08pgak]
   workflow_dispatch:
 
 concurrency:
