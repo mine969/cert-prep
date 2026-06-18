@@ -69,7 +69,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  font-size: 20px;
+  font-size: 16px;
 }
 
 body {
@@ -1069,7 +1069,7 @@ img { max-width: 100%; }
 .reader-content {
   color: var(--t2);
   line-height: 1.85;
-  font-size: 20px; /* default; overridden by JS adjFont */
+  font-size: 16px; /* default; overridden by JS adjFont */
 }
 .reader-content p,
 .reader-content li,
@@ -2734,7 +2734,7 @@ input#accentColorPicker { width: 22px; height: 22px; padding: 0; border: none; b
         </button>
         <div class="font-ctrl" title="Font size">
           <button id="fontDec" aria-label="Decrease font size">A−</button>
-          <span class="fc-val" id="fontVal">20</span>
+          <span class="fc-val" id="fontVal">16</span>
           <button id="fontInc" aria-label="Increase font size">A+</button>
         </div>
         <div class="reader-crumb" id="readerCrumb"></div>
@@ -2742,7 +2742,7 @@ input#accentColorPicker { width: 22px; height: 22px; padding: 0; border: none; b
       <div class="reader-controls" id="readerControls" style="display:none">
         <div class="rc-group"><label>Width</label><button class="rc-btn" data-rw="narrow" onclick="CP_RCtrl.setWidth('narrow')" title="Narrow">↔</button><button class="rc-btn active" data-rw="normal" onclick="CP_RCtrl.setWidth('normal')" title="Normal">⇔</button><button class="rc-btn" data-rw="wide" onclick="CP_RCtrl.setWidth('wide')" title="Wide">⟺</button></div>
         <div class="rc-group"><label>Spacing</label><button class="rc-btn" data-lh="compact" onclick="CP_RCtrl.setSpacing('compact')" title="Compact">≡</button><button class="rc-btn active" data-lh="normal" onclick="CP_RCtrl.setSpacing('normal')" title="Normal">☰</button><button class="rc-btn" data-lh="relaxed" onclick="CP_RCtrl.setSpacing('relaxed')" title="Relaxed">≣</button></div>
-        <div class="rc-group"><label>Font</label><button class="rc-btn" onclick="CP_RCtrl.adjFont(-1)" title="Smaller">A-</button><span class="rc-font-val" id="rcFontVal">20</span><button class="rc-btn" onclick="CP_RCtrl.adjFont(1)" title="Larger">A+</button></div>
+        <div class="rc-group"><label>Font</label><button class="rc-btn" onclick="CP_RCtrl.adjFont(-1)" title="Smaller">A-</button><span class="rc-font-val" id="rcFontVal">16</span><button class="rc-btn" onclick="CP_RCtrl.adjFont(1)" title="Larger">A+</button></div>
         <div class="rc-group"><label>Font</label><button class="rc-btn" data-ff="sans" onclick="CP_RCtrl.setFF('sans')" title="Sans-serif">Aa</button><button class="rc-btn" data-ff="serif" onclick="CP_RCtrl.setFF('serif')" title="Serif">Tf</button><button class="rc-btn" data-ff="mono" onclick="CP_RCtrl.setFF('mono')" title="Monospace">01</button></div>
         <button class="rc-btn" onclick="CP_RCtrl.enterFullscreen()"  title="Fullscreen reading mode" style="padding:0 10px">⛶</button>
         <button class="rc-btn" onclick="CP_Notes.open()" title="Chapter notes" style="padding:0 10px">📝</button>
@@ -6043,7 +6043,7 @@ document.addEventListener('DOMContentLoaded', function(){ CP_LastRead.render(); 
 ─────────────────────────────────────────────────────────────────────────── */
 (function() {
   var SIZES = [12,13,14,15,16,17,18,20,22];
-  var DEFAULT_IDX = 7; // 20px
+  var DEFAULT_IDX = 4; // 16px
   var _idx = Math.max(0, Math.min(SIZES.length - 1,
     parseInt(localStorage.getItem('cp-fontsize') || String(DEFAULT_IDX), 10)));
 
@@ -7100,7 +7100,7 @@ document.addEventListener('cp:pagechange', function(e) {
 /* ── CP_Reader font-size and fullscreen ── */
 CP_RCtrl.adjFont = function(delta) {
   var sizes = [12,13,14,15,16,17,18,20,22];
-  var idx = parseInt(localStorage.getItem('cp-fontsize') || '7', 10);
+  var idx = parseInt(localStorage.getItem('cp-fontsize') || '4', 10);
   idx = Math.min(sizes.length - 1, Math.max(0, idx + delta));
   var sz = sizes[idx];
   var rc = document.getElementById('readerContent');
@@ -7115,8 +7115,8 @@ var _origRRestore = CP_RCtrl.restore.bind(CP_RCtrl);
 CP_RCtrl.restore = function() {
   _origRRestore();
   var sizes = [12,13,14,15,16,17,18,20,22];
-  var idx = parseInt(localStorage.getItem('cp-fontsize') || '7', 10);
-  idx = Math.min(sizes.length - 1, Math.max(0, isNaN(idx) ? 7 : idx));
+  var idx = parseInt(localStorage.getItem('cp-fontsize') || '4', 10);
+  idx = Math.min(sizes.length - 1, Math.max(0, isNaN(idx) ? 4 : idx));
   var fs = sizes[idx];
   var rc = document.getElementById('readerContent');
   if (rc) rc.style.fontSize = fs + 'px';

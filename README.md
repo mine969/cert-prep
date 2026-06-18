@@ -127,6 +127,10 @@ When updating the course:
 4. Confirm embedded markdown JSON is valid.
 5. Confirm the GitHub Pages workflow still deploys the intended branch.
 
+## Changelog
+
+- Fixed reader default font size: base html/reader font now defaults to 16px (was incorrectly defaulting to 20px). Adjustable range remains 12px-22px via the A-/A+ controls.
+
 ## Author
 
 Author: Hein Htet Zaw
